@@ -1,0 +1,71 @@
+<div class="flex justify-content-center align-items-center min-h-screen">
+
+  <p-card header="Euphoria" [style]="{ width: '700px' }"> 
+    <div>Sign In Page</div> <br>
+    <div class="flex">
+
+      <div class="mr-3 flex-shrink-0">
+        <img
+          src="bert-b-rhNff6hB41s-unsplash.png"
+          alt="Login Image"
+          style="width: 35    0px; height: auto;"
+        />
+      </div>
+
+      <div class="flex-grow">
+        <form #loginForm="ngForm" (ngSubmit)="onLogin()">
+          <div class="field">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              pInputText
+              [(ngModel)]="login.email"
+              class="w-full"
+              id="email"
+              name="email"
+              #email="ngModel"
+              required
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+            />
+            <small
+              *ngIf="email.invalid && (email.dirty || email.touched)"
+              class="block p-error"
+            >
+              <span *ngIf="email.hasError('required')">Email is required</span>
+              <span *ngIf="email.hasError('pattern')">Email is invalid</span>
+            </small>
+          </div>
+          <div class="field">
+            <label for="password">Password</label>
+            <p-password
+              [(ngModel)]="login.password"
+              [feedback]="false"
+              [toggleMask]="true"
+              inputId="password"
+              name="password"
+              #password="ngModel"
+              inputStyleClass="w-full"
+              styleClass="w-full"
+              required
+            ></p-password>
+            <small
+              *ngIf="password.invalid && (password.dirty || password.touched)"
+              class="block p-error"
+            >
+              Password is required
+            </small>
+          </div>
+          <p-button
+            label="SIGN IN"
+            styleClass="w-full"
+            [disabled]="loginForm.invalid"
+            type="submit"
+          ></p-button>
+          <div class="mt-2">
+            Not a member? <a routerLink="/register">Register</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </p-card>
+</div>
