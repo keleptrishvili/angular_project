@@ -7,6 +7,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { AuthService } from '../../services/auth.service';
 import { MessageService } from 'primeng/api';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ import { MessageService } from 'primeng/api';
     PasswordModule,
     ButtonModule,
     RouterLink,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
@@ -34,26 +36,15 @@ export class LoginComponent {
 
   onLogin() {
     const { email, password } = this.login;
-    this.authService.getUserDetails(email, password).subscribe({
+    this.authService.login(email, password).subscribe({
       next: (response) => {
-        if (response.length >= 1) {
-          sessionStorage.setItem('email', email);
-          this.router.navigate(['home']);
+        if (response) {
+          console.log('Login successful:', response);
         } else {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Invalid email or password',
-          });
+          console.log('Invalid credentials');
         }
       },
-      error: () => {
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Something went wrong',
-        });
-      },
+      error: (err) => console.error('Login error:', err),
     });
-  }
+  }    
 }

@@ -1,2 +1,53 @@
-<p>home works!</p>
-<p-button label="sign out" (onClick)="logout()"></p-button>
+<div class="home-container">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <h1>Euphoria</h1>
+    <ul class="nav-links">
+      <li>Shop</li>
+      <li>Men</li>
+      <li>Women</li>
+      <li>Combos</li>
+      <li>Joggers</li>
+    </ul>
+    <div class="search-bar">
+      <input type="text" placeholder="Search">
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Summer Value Pack</h2>
+      <p>cool / colorful / comfy</p>
+      <button class="btn-primary">Shop Now</button>
+    </div>
+    <div class="hero-image">
+      <!-- Add hero image here -->
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="category-card">
+      <h3>High Coziness</h3>
+      <p>UP TO 50% OFF</p>
+      <button class="btn-secondary">Explore Items</button>
+    </div>
+    <div class="category-card">
+      <h3>Breezy Summer Style</h3>
+      <p>UP TO 50% OFF</p>
+      <button class="btn-secondary">Explore Items</button>
+    </div>
+  </section>
+
+  <!-- New Arrival Section -->
+  <section class="new-arrivals">
+    <h2>New Arrival</h2>
+    <div class="items-grid">
+      <div class="item-card" *ngFor="let product of products">
+        <img [src]="product.image" alt="{{ product.name }}">
+        <p>{{ product.name }}</p>
+      </div>
+    </div>
+  </section>
+</div>
