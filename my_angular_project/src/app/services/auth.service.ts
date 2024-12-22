@@ -11,7 +11,7 @@ export class AuthService {
   getUserDetails(email: string, password: string) {
     throw new Error('Method not implemented.');
   }
-  private baseUrl = 'http://localhost:4200';
+  private baseUrl = 'http://localhost:3000';
   private tokenKey = 'authToken';
 
   constructor(private http: HttpClient) {}
