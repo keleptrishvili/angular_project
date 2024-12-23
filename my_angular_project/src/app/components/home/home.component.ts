@@ -12,6 +12,14 @@ import { ButtonModule } from 'primeng/button';
 })
 export class HomeComponent {
   private router = inject(Router);
+
+  userName: string = '';
+
+  constructor() {
+    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.userName = user.name || 'Guest'; // Default to 'Guest' if no user data is found
+  } 
+  
   logout() {
     sessionStorage.clear();
     this.router.navigate(['login']);

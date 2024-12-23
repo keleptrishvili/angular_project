@@ -38,15 +38,17 @@ export class AuthService {
         map((users: User[]) => {
           if (users.length > 0) {
             const user = users[0];
-            this.storeToken(user.token); // Assuming user object contains a token
+            this.storeToken(user.token); // Store the token
             return user;
           }
           return null; // Login failed
         }),
-        catchError(this.handleError)
+        catchError((error) => {
+          console.error('Login error:', error);
+          return throwError(() => new Error('Invalid email or password'));
+        })
       );
   }
-
   /**
    * Logout the user by clearing the token.
    */

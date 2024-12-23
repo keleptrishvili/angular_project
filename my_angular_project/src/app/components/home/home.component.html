@@ -1,5 +1,4 @@
 <div class="home-container">
-
   <nav class="navbar">
     <h1>Euphoria</h1>
     <ul class="nav-links">
@@ -10,9 +9,12 @@
       <li>Joggers</li>
     </ul>
     <div class="search-bar">
-      <input type="text" placeholder="Search">
+      <input type="text" placeholder="Search" />
+      <span>Welcome, {{ userName }}</span>
+      <button class="btn-primary" (click)="logout()">Logout</button>
     </div>
   </nav>
+
   <section class="hero">
     <div class="hero-content">
       <h2>Summer Value Pack</h2>
@@ -20,7 +22,7 @@
       <button class="btn-primary">Shop Now</button>
     </div>
     <div class="hero-image">
-      <!-- Add hero image here -->
+      <img src="assets/hero-image.jpg" alt="Hero Image" />
     </div>
   </section>
 
@@ -43,7 +45,7 @@
     <h2>New Arrival</h2>
     <div class="items-grid">
       <div class="item-card" *ngFor="let product of products">
-        <img [src]="product.image" alt="{{ product.name }}">
+        <img [src]="product.image" alt="{{ product.name }}" />
         <p>{{ product.name }}</p>
       </div>
     </div>

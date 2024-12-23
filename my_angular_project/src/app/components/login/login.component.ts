@@ -40,6 +40,7 @@ export class LoginComponent {
       next: (response) => {
         if (response) {
           console.log('Login successful:', response);
+          sessionStorage.setItem('user', JSON.stringify(response)); // Save user info
           this.router.navigate(['home']); // Navigate to the home page
         } else {
           console.log('Invalid credentials');
