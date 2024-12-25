@@ -19,15 +19,19 @@ export class HomeComponent {
     const user = JSON.parse(sessionStorage.getItem('user') || '{}');
     this.userName = user.name || 'Guest'; // Default to 'Guest' if no user data is found
   } 
+  ngOnInit() {
+    const user = JSON.parse(sessionStorage.getItem('user') || '{}');
+    this.userName = user.name; // or whichever property you need
+  }  
   
   logout() {
     sessionStorage.clear();
     this.router.navigate(['login']);
   }
   products = [
-    { name: 'Product 1', image: 'assets/product1.jpg' },
-    { name: 'Product 2', image: 'assets/product2.jpg' },
-    { name: 'Product 3', image: 'assets/product3.jpg' },
-    { name: 'Product 4', image: 'assets/product4.jpg' },
+    { name: 'Product 1', image: 'photo.png' },
+    { name: 'Product 2', image: 'Rectangle 28.png' },
+    { name: 'Product 3', image: 'Rectangle 28 (1).png' },
+    { name: 'Product 4', image: 'Rectangle 28 (2).png' },
   ];
 }

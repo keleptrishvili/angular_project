@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import {
   FormControl,
   FormGroup,
+  FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
@@ -14,6 +15,8 @@ import { passwordMismatchValidator } from '../../shared/password-mismatch.direct
 import { AuthService } from '../../services/auth.service';
 import { RegisterPostData } from '../../interfaces/auth';
 import { MessageService } from 'primeng/api';
+import { CommonModule } from '@angular/common';
+import { HttpClientXsrfModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-register',
@@ -25,6 +28,8 @@ import { MessageService } from 'primeng/api';
     PasswordModule,
     ButtonModule,
     RouterLink,
+    FormsModule,
+    CommonModule
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],

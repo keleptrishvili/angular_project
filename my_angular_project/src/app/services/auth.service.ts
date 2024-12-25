@@ -1,5 +1,5 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { RegisterPostData, User } from '../interfaces/auth';
@@ -8,19 +8,16 @@ import { RegisterPostData, User } from '../interfaces/auth';
   providedIn: 'root',
 })
 export class AuthService {
-  getUserDetails(email: string, password: string) {
-    throw new Error('Method not implemented.');
-  }
-  private baseUrl = 'http://localhost:3000';
-  private tokenKey = 'authToken';
+  private baseUrl = 'http://localhost:3000'; // Ensure this matches json-server's URL
 
   constructor(private http: HttpClient) {}
 
-  /** 
+  /**
    * Register a new user.
    * @param postData - User data to register.
    */
   registerUser(postData: RegisterPostData): Observable<User> {
+    console.log('Registering user with data:', postData); // Debug log
     return this.http.post<User>(`${this.baseUrl}/users`, postData).pipe(
       catchError(this.handleError)
     );
@@ -32,52 +29,18 @@ export class AuthService {
    * @param password - User's password.
    */
   login(email: string, password: string): Observable<User | null> {
-    return this.http
-      .get<User[]>(`${this.baseUrl}/users?email=${email}&password=${password}`)
-      .pipe(
-        map((users: User[]) => {
-          if (users.length > 0) {
-            const user = users[0];
-            this.storeToken(user.token); // Store the token
-            return user;
-          }
-          return null; // Login failed
-        }),
-        catchError((error) => {
-          console.error('Login error:', error);
-          return throwError(() => new Error('Invalid email or password'));
-        })
-      );
-  }
-  /**
-   * Logout the user by clearing the token.
-   */
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
-  }
-
-  /**
-   * Check if the user is logged in.
-   * @returns true if token exists, otherwise false.
-   */
-  isLoggedIn(): boolean {
-    return !!this.getToken();
-  }
-
-  /**
-   * Get the stored token from local storage.
-   * @returns The authentication token or null.
-   */
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
-
-  /**
-   * Helper method to store token in local storage.
-   * @param token - The token to store.
-   */
-  private storeToken(token: string): void {
-    localStorage.setItem(this.tokenKey, token);
+    return this.http.get<User[]>(`${this.baseUrl}/users?email=${email}&password=${password}`).pipe( // Use query parameters to search for user
+      map((users: User[]) => {
+        if (users.length > 0) {
+          return users[0]; // User found
+        }
+        return null; // Login failed
+      }),
+      catchError((error) => {
+        console.error('Login error:', error);
+        return throwError(() => new Error('Invalid email or password'));
+      })
+    );
   }
 
   /**

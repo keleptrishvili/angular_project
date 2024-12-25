@@ -11,6 +11,48 @@
       "fullName": "manana",
       "email": "manana12@gmail.com",
       "password": "1111"
+    },
+    {
+      "id": "5ba4",
+      "fullName": "giorgi",
+      "email": "giorgiii@gmail.com",
+      "password": "giogio"
+    },
+    {
+      "id": "6ba3",
+      "fullName": "bacho",
+      "email": "bachob@gmail.com",
+      "password": "zzzz"
+    },
+    {
+      "id": "b329",
+      "fullName": "ana",
+      "email": "ana@gmail.com",
+      "password": "pppp"
+    },
+    {
+      "id": "a715",
+      "fullName": "nika",
+      "email": "nikak@gmail.com",
+      "password": "rrrr"
+    },
+    {
+      "id": "b40b",
+      "fullName": "andro",
+      "email": "andro@gmail.com",
+      "password": "wwww"
+    },
+    {
+      "id": "3bef",
+      "fullName": "mariam",
+      "email": "mariamim@gmail.com",
+      "password": "ssss"
+    },
+    {
+      "id": "829a",
+      "fullName": "tiko",
+      "email": "tiko3@gmail.com",
+      "password": "bbbb"
     }
   ]
 }
